@@ -92,6 +92,7 @@ innodb_defragment               	= ON
 ################################################################
 # MariaDB Audit
 ################################################################
+plugin_load_add                 	= "server_audit.so"
 server_audit_logging            	= ON
 server_audit_output_type        	= file
 server_audit_file_path          	= /var/log/mysql/mariadb-audit.log
