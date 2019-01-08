@@ -1,0 +1,98 @@
+###############################################################
+# General Settings
+###############################################################
+[client-server]
+socket                          	= /var/lib/mysql/mysql.sock
+
+[mysql]
+port                            	= 3306
+socket                          	= /var/lib/mysql/mysql.sock
+default_character_set           	= utf8
+
+[mysqld_safe]
+basedir                         	= /usr/
+pid-file                        	= /var/lib/mysql/mysql.pid
+
+[mysqld]
+basedir                         	= /usr/
+datadir                         	= /var/lib/mysql
+tmpdir                          	= /tmp
+socket                          	= /var/lib/mysql/mysql.sock
+port                            	= 3306
+pid-file                        	= /var/lib/mysql/mysql.pid
+server_id                       	= 1
+gtid_domain_id                  	= 1
+character_set_server            	= utf8
+collation_server                	= utf8_general_ci
+init_connect                    	= 'SET NAMES utf8'
+user                            	= mysql
+default_storage_engine          	= InnoDB
+userstat                        	= ON
+feedback                        	= ON
+performance_schema
+event_scheduler
+skip_name_resolve
+
+################################################################
+# Safety, Security & Recovery
+################################################################
+symbolic_links                  	= 0
+myisam_recover_options          	= FORCE,BACKUP
+max_allowed_packet              	= 32M
+max_connect_errors              	= 1000000
+log_bin_trust_function_creators 	= ON
+explicit_defaults_for_timestamp 	= ON
+
+################################################################
+# Caches, Buffers & Connections
+################################################################
+query_cache_type                	= 0
+query_cache_size                	= 0
+thread_handling                 	= pool-of-threads
+max_connections                 	= 500
+wait_timeout                    	= 600
+interactive_timeout             	= 600
+tmp_table_size                  	= 16M
+max_heap_table_size             	= 16M
+
+################################################################
+# MySQL Logs
+################################################################
+binlog_format                   	= ROW
+binlog_row_image                	= FULL
+sync_binlog                     	= 1
+log_bin                         	= /var/log/mysql/mariadb-bin
+log_bin_index                   	= /var/log/mysql/mariadb-bin.index
+expire_logs_days                	= 3
+log_error                       	= /var/log/mysql/mariadb-error.log
+slow_query_log                  	= ON
+slow_query_log_file             	= /var/log/mysql/mariadb-slow.log
+log_queries_not_using_indexes   	= OFF
+log_warnings                    	= 2
+log_slow_verbosity              	= query_plan,innodb,explain
+long_query_time                 	= 5
+
+################################################################
+# InnoDB Variables
+################################################################
+innodb_file_per_table           	= ON
+innodb_data_file_path           	= ibdata1:12M:autoextend
+innodb_flush_log_at_trx_commit  	= 1
+innodb_flush_method             	= O_DSYNC
+innodb_log_files_in_group       	= 2
+innodb_log_buffer_size          	= 64M
+innodb_log_file_size            	= 1G
+innodb_autoinc_lock_mode        	= 2
+innodb_rollback_on_timeout      	= ON
+innodb_thread_concurrency       	= 8
+innodb_force_primary_key        	= ON
+innodb_print_all_deadlocks      	= ON
+innodb_defragment               	= ON
+
+################################################################
+# MariaDB Audit
+################################################################
+server_audit_logging            	= ON
+server_audit_output_type        	= file
+server_audit_file_path          	= /var/log/mysql/mariadb-audit.log
+server_audit_events	            	= query_ddl
