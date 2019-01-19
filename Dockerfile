@@ -11,7 +11,8 @@ RUN yum -y install wget epel-release nano sudo curl which htop git && \
 		MariaDB-tokudb-engine \
 		MariaDB-oqgraph-engine \
 		MariaDB-aws-key-management \
-		MariaDB-cracklib-password-check && \
+		MariaDB-cracklib-password-check \
+		https://www.percona.com/downloads/percona-toolkit/3.0.13/binary/redhat/7/x86_64/percona-toolkit-3.0.13-1.el7.x86_64.rpm && \
 		mkdir -p /root/scripts/ && \
 		git clone https://github.com/datacharmer/test_db.git /root/scripts/test_db
 
